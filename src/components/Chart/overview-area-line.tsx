@@ -6,8 +6,8 @@ import CustomTooltip from './customer-tooltip';
 function OverviewAreaLine({
   data,
   loading,
-  name = '总内容量',
-  color = '#4080FF',
+  name = '容量',
+  color = '#FF0000',
 }: {
   data: any[];
   loading: boolean;
@@ -45,12 +45,12 @@ function OverviewAreaLine({
           shape="smooth"
           position="date*count"
           size={3}
-          color="l (0) 0:#1EE7FF .57:#249AFF .85:#6F42FB"
+          color="l (0) 0:#FF0000 .57:#FF6347 .85:#FF4500"
         />
         <Area
           position="date*count"
           shape="smooth"
-          color="l (90) 0:rgba(17, 126, 255, 0.5)  1:rgba(17, 128, 255, 0)"
+          color="l (90) 0:rgba(255, 0, 0, 0.5)  1:rgba(255, 0, 0, 0)"
         />
         <Tooltip
           showCrosshairs={true}

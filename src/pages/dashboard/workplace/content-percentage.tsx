@@ -40,7 +40,7 @@ function PopularContent() {
           innerRadius={0.65}
           angleField="count"
           colorField="type"
-          color={['#21CCFF', '#313CA9', '#249EFF']}
+          color={['#FF0000', '#FF6347', '#FF4500']}
           interactions={[
             {
               type: 'element-single-selected',
@@ -66,7 +66,7 @@ function PopularContent() {
                 lineHeight: 2,
                 color: 'rgb(--var(color-text-1))',
               },
-              formatter: () => '内容量',
+              formatter: () => '内容',
             },
             content: {
               style: {

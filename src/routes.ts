@@ -13,20 +13,48 @@ export type IRoute = AuthParams & {
 
 export const routes: IRoute[] = [
   {
-    name: 'menu.dashboard',
+    name: 'Pytorch',
     key: 'dashboard',
     children: [
       {
-        name: 'menu.dashboard.workplace',
+        name: 'Overview',
+        key: 'dashboard/workplace',
+      },
+      {
+        name: 'Operator',
+        key: 'dashboard/workplace',
+      },
+      {
+        name: 'GPU kernel',
+        key: 'dashboard/workplace',
+      },
+      {
+        name: 'Trace',
+        key: 'dashboard/workplace',
+      },
+      {
+        name: 'Module',
         key: 'dashboard/workplace',
       },
     ],
   },
+
   {
-    name: 'Example',
-    key: 'example',
+    name: 'Tensorflow',  // 新选项名称
+    key: 'new-option',
+    children: [  // 添加子菜单项
+      {
+        name: 'Sub Option 1',
+        key: 'new-option/sub-option-1',
+      },
+      {
+        name: 'Sub Option 2',
+        key: 'new-option/sub-option-2',
+      },
+    ],
   },
 ];
+
 
 export const getName = (path: string, routes) => {
   return routes.find((item) => {

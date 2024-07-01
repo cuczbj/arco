@@ -27,7 +27,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { GlobalState } from '@/store';
 import { GlobalContext } from '@/context';
 import useLocale from '@/utils/useLocale';
-import Logo from '@/assets/logo.svg';
+import Logo from '@/assets/logo.svg'; // 确保导入的是组件
 import MessageBox from '@/components/MessageBox';
 import IconButton from './IconButton';
 import Settings from '../Settings';
@@ -139,8 +139,8 @@ function Navbar({ show }: { show: boolean }) {
     <div className={styles.navbar}>
       <div className={styles.left}>
         <div className={styles.logo}>
-          <Logo />
-          <div className={styles['logo-name']}>Arco Pro</div>
+          <Logo /> {/* 使用组件 */}
+          <span className={styles['logo-name']}>算子性能可视化评估平台</span>
         </div>
       </div>
       <ul className={styles.right}>

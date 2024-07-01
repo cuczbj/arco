@@ -32,10 +32,13 @@ function getIconFromKey(key) {
       return <IconDashboard className={styles.icon} />;
     case 'example':
       return <IconTag className={styles.icon} />;
+    case 'new-option': // 新增
+      return <IconDashboard className={styles.icon} />;
     default:
       return <div className={styles['icon-empty']} />;
   }
 }
+
 
 function getFlattenRoutes(routes) {
   const res = [];
@@ -98,7 +101,7 @@ function PageLayout() {
 
   function renderRoutes(locale) {
     routeMap.current.clear();
-    return function travel(_routes: IRoute[], level, parentNode = []) {
+    return function travel(_routes, level, parentNode = []) {
       return _routes.map((route) => {
         const { breadcrumb = true, ignore } = route;
         const iconDom = getIconFromKey(route.key);
@@ -107,12 +110,12 @@ function PageLayout() {
             {iconDom} {locale[route.name] || route.name}
           </>
         );
-
+  
         routeMap.current.set(
           `/${route.key}`,
           breadcrumb ? [...parentNode, route.name] : []
         );
-
+  
         const visibleChildren = (route.children || []).filter((child) => {
           const { ignore, breadcrumb = true } = child;
           if (ignore || route.ignore) {
@@ -121,10 +124,10 @@ function PageLayout() {
               breadcrumb ? [...parentNode, route.name, child.name] : []
             );
           }
-
+  
           return !ignore;
         });
-
+  
         if (ignore) {
           return '';
         }
@@ -141,6 +144,8 @@ function PageLayout() {
       });
     };
   }
+  
+  
 
   function onClickMenuItem(key) {
     const currentRoute = flattenRoutes.find((r) => r.key === key);
@@ -240,24 +245,26 @@ function PageLayout() {
                 </div>
               )}
               <Content>
-                <Switch>
-                  {flattenRoutes.map((route, index) => {
-                    return (
-                      <Route
-                        key={index}
-                        path={`/${route.key}`}
-                        component={route.component}
-                      />
-                    );
-                  })}
-                  <Route exact path="/">
-                    <Redirect to={`/${defaultRoute}`} />
-                  </Route>
-                  <Route
-                    path="*"
-                    component={lazyload(() => import('./pages/exception/403'))}
-                  />
-                </Switch>
+              <Switch>
+  {flattenRoutes.map((route, index) => {
+    return (
+      <Route
+        key={index}
+        path={`/${route.key}`}
+        component={route.component}
+      />
+    );
+  })}
+  <Route exact path="/">
+    <Redirect to={`/${defaultRoute}`} />
+  </Route>
+  <Route
+    path="*"
+    component={lazyload(() => import('./pages/exception/403'))}
+  />
+</Switch>
+
+
               </Content>
             </div>
             {showFooter && <Footer />}
